@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.WPF.Extensions;
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,12 +16,15 @@ namespace FontAwesome.WPF
         /// <summary>
         /// FontAwesome FontFamily.
         /// </summary>
+#if !NETCORE
         private static readonly FontFamily FontAwesomeFontFamily = new FontFamily(new Uri("pack://application:,,,/FontAwesome.WPF;component/"), "./#FontAwesome");
+
         /// <summary>
         /// Typeface used to generate FontAwesome icon.
         /// </summary>
         private static readonly Typeface FontAwesomeTypeface = new Typeface(FontAwesomeFontFamily, FontStyles.Normal,
             FontWeights.Normal, FontStretches.Normal);
+#endif
         /// <summary>
         /// Identifies the FontAwesome.WPF.ImageAwesome.Foreground dependency property.
         /// </summary>
@@ -203,14 +207,21 @@ namespace FontAwesome.WPF
         /// <returns>A new System.Windows.Media.ImageSource</returns>
         public static ImageSource CreateImageSource(FontAwesomeIcon icon, Brush foregroundBrush, double emSize = 100)
         {
-            var charIcon = char.ConvertFromUtf32((int)icon);
-
             var visual = new DrawingVisual();
             using (var drawingContext = visual.RenderOpen())
             {
+#if NETCORE
+                drawingContext.DrawText(
+                    new FormattedText(icon.GetUnicode(), CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                        icon.GetTypeFace(), emSize, foregroundBrush, 1.0)
+                    { TextAlignment = TextAlignment.Center }, new Point(0, 0));
+#else
+                var charIcon = char.ConvertFromUtf32((int)icon);
+
                 drawingContext.DrawText(
                     new FormattedText(charIcon, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                        FontAwesomeTypeface, emSize, foregroundBrush) { TextAlignment = TextAlignment.Center }, new Point(0, 0));
+                        FontAwesomeTypeface, emSize, foregroundBrush, 1.0) { TextAlignment = TextAlignment.Center }, new Point(0, 0));
+#endif
             }
             return new DrawingImage(visual.Drawing);
         }

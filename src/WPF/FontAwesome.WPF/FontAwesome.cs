@@ -14,7 +14,11 @@ namespace FontAwesome.WPF
         /// <summary>
         /// FontAwesome FontFamily.
         /// </summary>
+#if NETCORE
+        private static readonly FontFamily FontAwesomeFontFamily = new FontFamily(new Uri("pack://application:,,,/FontAwesome.WPF.Core;component/"), "./#FontAwesome");
+#else
         private static readonly FontFamily FontAwesomeFontFamily = new FontFamily(new Uri("pack://application:,,,/FontAwesome.WPF;component/"), "./#FontAwesome");
+#endif
         /// <summary>
         /// Identifies the FontAwesome.WPF.FontAwesome.Icon dependency property.
         /// </summary>

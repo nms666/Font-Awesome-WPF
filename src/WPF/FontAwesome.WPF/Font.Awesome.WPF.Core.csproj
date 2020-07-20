@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DefineConstants>NETCORE</DefineConstants>
+    <UseWPF>true</UseWPF>
+    <Product>Font Awesome WPF (Core)</Product>
+    <Description>Wpf components for the iconic font and CSS toolkit Font-Awesome</Description>
+    <Copyright>Copyright © 2015-2020</Copyright>
+    <Version>4.7.0.9</Version>
+    <AssemblyName>FontAwesome.WPF.Core</AssemblyName>
+    <RootNamespace>FontAwesome.WPF.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FontAwesome.Icon.png" />
+    <None Remove="ImageAwesome.Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\..\Font-Awesome\otfs\Font Awesome 5 Brands-Regular-400.otf" Link="Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <Resource Include="..\..\..\Font-Awesome\otfs\Font Awesome 5 Free-Regular-400.otf" Link="Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <Resource Include="..\..\..\Font-Awesome\otfs\Font Awesome 5 Free-Solid-900.otf" Link="Fonts\Font Awesome 5 Free-Solid-900.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="FontAwesome.Icon.png" />
+    <EmbeddedResource Include="ImageAwesome.Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+
+</Project>

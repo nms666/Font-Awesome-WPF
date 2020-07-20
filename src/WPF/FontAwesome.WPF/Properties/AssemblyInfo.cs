@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
 
-
+#if !NETCORE
 [assembly: AssemblyTitle("Font Awesome WPF")]
 [assembly: AssemblyDescription("Wpf components for the iconic font and CSS toolkit Font-Awesome")]
 [assembly: AssemblyConfiguration("")]
@@ -12,6 +12,7 @@ using System.Windows.Markup;
 [assembly: AssemblyCopyright("Copyright © 2015-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+#endif
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -23,8 +24,10 @@ using System.Windows.Markup;
 
 //      Version: First three numbers is FontAwesome version, the last number specifies code revision
 //
+#if !NETCORE
 [assembly: AssemblyVersion("4.7.0.*")]
 [assembly: AssemblyFileVersion("4.7.0.9")]
+#endif
 
 [assembly: XmlnsPrefix("http://schemas.fontawesome.io/icons/", "fa")]
 [assembly: XmlnsDefinition("http://schemas.fontawesome.io/icons/", "FontAwesome.WPF")]
